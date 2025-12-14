@@ -41,7 +41,7 @@ cd slstatus && sudo make install && cd ..
 cd slock && sudo make install && cd ..
 ```
 
-Colors: `dwm/themes/mhtheme.h`
-Terminal opacity: `st/config.h` ---> `float alpha = 0.8` (Line 97)
+Colors: `dwm/themes/mhtheme.h` <br>
+Terminal opacity: `st/config.h` ---> `float alpha = 0.8` (Line 97) <br>
 Wallpapers: `.xinitrc` ---> `feh --bg-scale ~/wallpapers/currentwall.jpg &` (Line 4)
 
