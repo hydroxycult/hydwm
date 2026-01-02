@@ -23,7 +23,7 @@ Run `startx` to start.
 
 ## Post-Installation
 
-### Firefox userChrome
+### Firefox userChrome (Optional - suitable only for vertical tabs)
 
 1. Open Firefox → `about:config`
 2. Set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`
