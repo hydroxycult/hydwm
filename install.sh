@@ -86,8 +86,8 @@ chmod +x ~/.xinitrc
 
 echo "  -> Installing lite-xl colors..."
 rm -rf ~/.config/lite-xl/colors
-mkdir -p ~/.config/lite-xl
 cp -r colors ~/.config/lite-xl/
+
 echo "core.reload_module('colors.catppuccin-mocha')" >> ~/.config/lite-xl/init.lua
 echo "  -> Setting up XDG user directories..."
 cp user-dirs.dirs ~/.config/
