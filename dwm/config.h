@@ -44,7 +44,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.5;   /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;     /* number of clients in master area */
-static const int resizehints = 1;     /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;     /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1;  /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
@@ -167,7 +167,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPrev,      spawn,          SHCMD("playerctl previous") },
 	{ 0,                            XF86XK_AudioPlay,      spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioPause,     spawn,          SHCMD("playerctl play-pause") },
-	{ MODKEY|ShiftMask,             XK_s,                  spawn,          SHCMD("maim -s -u | xclip -selection clipboard -t image/png -i") },                          // area screenshot
+	{ MODKEY|ShiftMask,             XK_s,                  spawn,          SHCMD("file="$HOME/media/$(date +'%Y-%m-%d_%H-%M-%S').png"; maim -s -u | tee "$file" | xclip -selection clipboard -t image/png -i && notify-send "Screenshot saved" "$(basename "$file")"") },                          // area screenshot
 	{ MODKEY|ShiftMask,             XK_comma,              tagmon,         {.i = -1 } },                                      // move to prev monitor
 	{ MODKEY|ShiftMask,             XK_period,             tagmon,         {.i = +1 } },                                      // move to next monitor
 	
