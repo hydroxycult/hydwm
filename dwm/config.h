@@ -167,8 +167,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPrev,      spawn,          SHCMD("playerctl previous") },
 	{ 0,                            XF86XK_AudioPlay,      spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioPause,     spawn,          SHCMD("playerctl play-pause") },
-	{ MODKEY|ShiftMask,             XK_s,                  spawn,          SHCMD("file="$HOME/media/$(date +'%Y-%m-%d_%H-%M-%S').png"; maim -s -u | tee "$file" | xclip -selection clipboard -t image/png -i && notify-send "Screenshot saved" "$(basename "$file")"") },                          // area screenshot
-	{ MODKEY|ShiftMask,             XK_comma,              tagmon,         {.i = -1 } },                                      // move to prev monitor
+	{ MODKEY|ShiftMask, XK_s, spawn, SHCMD("file=\"$HOME/media/$(date +'%Y-%m-%d_%H-%M-%S').png\"; maim -s -u | tee \"$file\" | xclip -selection clipboard -t image/png -i && notify-send \"Screenshot saved\" \"$(basename \"$file\")\"") }, // area screenshot
 	{ MODKEY|ShiftMask,             XK_period,             tagmon,         {.i = +1 } },                                      // move to next monitor
 	
 	TAGKEYS(                        XK_1,                                  0)
