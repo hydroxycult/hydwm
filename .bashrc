@@ -13,6 +13,7 @@ n() {
     disown
     kill -9 $$
 }
+eval "$(fzf --bash)"
 export SCRIPTS="$HOME/.local/bin"
 
 PS1='[\u@\h \W]\$ '
