@@ -1,0 +1,9 @@
+[Unit]
+Description=Battery Monitor
+
+[Service]
+ExecStart=%h/.local/bin/battery-monitor.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
