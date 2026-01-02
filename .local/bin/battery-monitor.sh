@@ -60,15 +60,15 @@ while true; do
     
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Battery: ${battery_level}% | Status: $charging_status"
     if [ "$battery_level" -le "$LOW_THRESHOLD" ] && [ "$LOW_NOTIFIED" = false ]; then
-        send_notification "⚠️ Low Battery Warning" \
-            "Battery level is at ${battery_level}%. Please charge your device." \
+        send_notification "Low Battery" \
+            "Please charge your device." \
             "critical"
         LOW_NOTIFIED=true
         HIGH_NOTIFIED=false
     fi
     if [ "$battery_level" -ge "$HIGH_THRESHOLD" ] && [ "$HIGH_NOTIFIED" = false ]; then
-        send_notification " Battery Charged" \
-            "Battery level is at ${battery_level}%. Consider unplugging to preserve battery health." \
+        send_notification "Battery Charged" \
+            "Unplug battery now." \
             "normal"
         HIGH_NOTIFIED=true
         LOW_NOTIFIED=false
