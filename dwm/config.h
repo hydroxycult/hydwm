@@ -4,10 +4,10 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 3;        // border pixel of windows
+static const unsigned int borderpx  = 4;        // border pixel of windows
 static const unsigned int snap      = 32;       // snap pixel
-static const unsigned int gappih    = 0;        // horiz inner gap between windows
-static const unsigned int gappiv    = 0;        // vert inner gap between windows
+static const unsigned int gappih    = 6;        // horiz inner gap between windows
+static const unsigned int gappiv    = 6;        // vert inner gap between windows
 static const unsigned int gappoh    = 0;        // horiz outer gap between windows and screen edge
 static const unsigned int gappov    = 0;        // vert outer gap between windows and screen edge
 static       int smartgaps          = 1;        // 1 means no outer gap when there is only one window
