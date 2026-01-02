@@ -1,0 +1,43 @@
+/* ================================
+ * Auto-hide navbar (URL + extensions)
+ * Fixed: Doesn't push page content
+ * ================================ */
+:root {
+  --navbar-margin: -42px; /* Adjust this if navbar still shows */
+  --anim-speed: 0.08s;
+}
+
+/* Hide navbar completely by pushing it up */
+#nav-bar {
+  margin-top: var(--navbar-margin) !important;
+  margin-bottom: 0 !important;
+  z-index: -100 !important;
+  opacity: 0 !important;
+  transition: all var(--anim-speed) ease !important;
+}
+
+/* Reveal navbar on hover or focus (Ctrl+L) */
+#navigator-toolbox:focus-within > #nav-bar,
+#navigator-toolbox:hover > #nav-bar {
+  margin-top: 0 !important;
+  z-index: 100 !important;
+  opacity: 1 !important;
+}
+
+/* Make navbar overlay the page content instead of pushing it */
+#navigator-toolbox {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+#nav-bar {
+  position: relative !important;
+}
+
+/* Ensure URL bar and extensions remain interactive when visible */
+#urlbar-container,
+#nav-bar-customization-target {
+  pointer-events: auto !important;
+}
+#alltabs-button { display: none !important; }
+.titlebar-spacer[type="post-tabs"] {  display: none !important; }
