@@ -1,0 +1,32 @@
+:root {
+  --navbar-margin: -42px; /* Adjust this if navbar still shows */
+  --anim-speed: 0.08s;
+}
+
+/* Hide navbar completely by pushing it up */
+#nav-bar {
+  margin-top: var(--navbar-margin) !important;
+  margin-bottom: 0 !important;
+  z-index: -100 !important;
+  opacity: 0 !important;
+  transition: all var(--anim-speed) ease !important;
+}
+#navigator-toolbox:focus-within > #nav-bar,
+#navigator-toolbox:hover > #nav-bar {
+  margin-top: 0 !important;
+  z-index: 100 !important;
+  opacity: 1 !important;
+}
+#navigator-toolbox {
+  position: relative !important;
+  z-index: 1000 !important;
+}
+#nav-bar {
+  position: relative !important;
+}
+#urlbar-container,
+#nav-bar-customization-target {
+  pointer-events: auto !important;
+}
+#alltabs-button { display: none !important; }
+.tab-close-button.close-icon {display:none !important;}
