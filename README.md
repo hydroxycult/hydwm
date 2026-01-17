@@ -13,7 +13,7 @@ chmod +x install.sh
 ```
 
 > [!WARNING]
-> **Only run `install.sh` if you know what you're doing.** In short, this script will:
+> **Only run `install.sh` if you know what you're doing.** This script will:
 >
 > * Install packages via pacman (Arch Linux only).
 > * Build and install suckless tools system-wide.

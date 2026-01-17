@@ -1,9 +1,4 @@
-// clang-format off
-/* See LICENSE file for copyright and license details. */
-
 #include <X11/XF86keysym.h>
-
-/* appearance */
 static const unsigned int borderpx  = 3;        // border pixel of windows
 static const unsigned int snap      = 32;       // snap pixel
 static const unsigned int gappih    = 0;        // horiz inner gap between windows
@@ -25,7 +20,6 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_accnt, col_accnt  },
 };
 
-/* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const char *tagicon_selected = "󰮯"; /* Icon for the selected tag */
 static const char *tagicon_occupied = ""; /* Icon for tags with windows */
@@ -35,10 +29,6 @@ static const unsigned int ulinestroke   = 2; /* thickness / height of the underl
 static const unsigned int ulinevoffset  = 0; /* how far above the bottom of the bar the line should appear */
 static const int ulineall               = 0; /* 1 to show underline on all tags, 0 for just the active ones */
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "com.lite_xl.LiteXL",  NULL,  NULL,  1 << 0,  0,  -1 },
 	{ ,  "lite-xl",  NULL,  0,  0,  -1 },
@@ -46,7 +36,6 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
-/* layout(s) */
 static const float mfact     = 0.5;   /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;     /* number of clients in master area */
 static const int resizehints = 1;     /* 1 means respect size hints in tiled resizals */
@@ -57,7 +46,6 @@ static const int lockfullscreen = 1;  /* 1 will force focus on the fullscreen wi
 #include "unfloat.c"
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
 	{ "[@]",      spiral },
@@ -81,12 +69,7 @@ static const Layout layouts[] = {
     { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
     { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
-
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
-/* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-c", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_accnt, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
@@ -98,12 +81,10 @@ static const char *litexl[] = { "lite-xl", NULL };
 static const Key keys[] = {
 	/* modifier                     key                    function        argument */
 	{ ALTKEY,                       XK_space,              spawn,          {.v = dmenucmd } },                                // app launcher
-	{ ControlMask|ALTKEY,           XK_t,                  spawn,          {.v = termcmd  } },                               // terminal CTRL+ALT+T 
-	{ ControlMask,                  XK_e,                  spawn,          {.v = thunar } },                                  // file manager CTRL+E 
-	{ ControlMask|ShiftMask,        XK_z,                  spawn,          {.v = firefox } },                              // firefox CTRL+SHIFT+Z 
-	{ MODKEY,                       XK_m,                  spawn,          {.v = litexl } },                                  // lite-xl SUPER+M 
+	{ ControlMask|ALTKEY,           XK_t,                  spawn,          {.v = termcmd  } },                                // terminal 
+	{ ControlMask,                  XK_e,                  spawn,          {.v = thunar } },                                  // file manager  
 	{ MODKEY,                       XK_l,                  spawn,          SHCMD("slock") },                                  // lock screen SUPER+L 
-        { ControlMask,                  XK_space,              spawn,          SHCMD("xcolor | xclip -selection clipboard") }, // colorpicker	
+  { ControlMask,                  XK_space,              spawn,          SHCMD("xcolor | xclip -selection clipboard") },    // colorpicker	
 	{ ControlMask,                  XK_q,                  killclient,     {0} },                                             // kill window 
 	{ ControlMask|ShiftMask,        XK_q,                  spawn,          SHCMD("xkill") },                                  // force kill CTRL+SHIFT+Q
 	{ MODKEY,                       XK_v,                  togglefloating, {0} },                                             // toggle float SUPER+V 
@@ -132,13 +113,9 @@ static const Key keys[] = {
 	{ ControlMask|ALTKEY,           XK_Left,               view,           {.ui = ~0 } },                                     // view all tags
 	{ ControlMask|ALTKEY,           XK_Right,              view,           {.ui = ~0 } },                                     // next workspace (show all then cycle)
 	{ MODKEY,                       XK_s,                  toggleview,     {.ui = 1 << 8} },                                  // special workspace (tag 9)
-	{ MODKEY|ShiftMask,             XK_semicolon,          tag,            {.ui = 1 << 8} },                                  // move to special workspace silent
-	{ MODKEY|ControlMask|ShiftMask, XK_s,                  tag,            {.ui = 1 << 8} },                                  // move to special workspace
-	{ MODKEY,                       XK_0,                  view,           {.ui = ~0 } },                                     // view all tags
 	{ MODKEY|ShiftMask,             XK_0,                  tag,            {.ui = ~0 } },                                     // tag on all workspaces
 	{ MODKEY,                       XK_i,                  incnmaster,     {.i = +1 } },                                      // increase master
 	{ MODKEY,                       XK_d,                  incnmaster,     {.i = -1 } },                                      // decrease master
-	{ MODKEY,                       XK_Return,             zoom,           {0} },                                             // swap with master
 	{ MODKEY,                       XK_b,                  togglebar,      {0} },                                             // toggle bar
 	{ MODKEY|ALTKEY,                XK_1,                  setlayout,      {.v = &layouts[0]} },                              // tile layout
 	{ MODKEY|ALTKEY,                XK_2,                  setlayout,      {.v = &layouts[13]} },                             // float layout
@@ -147,7 +124,6 @@ static const Key keys[] = {
 	{ MODKEY|ALTKEY,                XK_5,                  setlayout,      {.v = &layouts[3]} },                              // bstack
 	{ MODKEY|ALTKEY,                XK_6,                  setlayout,      {.v = &layouts[7]} },                              // grid
 	{ MODKEY|ALTKEY,                XK_7,                  setlayout,      {.v = &layouts[2]} },                              // spiral
-	
 	{ MODKEY|ShiftMask,             XK_minus,              incrgaps,       {.i = -2 } },                                      // decrease inner gaps
 	{ MODKEY|ShiftMask,             XK_equal,              incrgaps,       {.i = +2 } },                                      // increase inner gaps
 	{ MODKEY|ControlMask,           XK_minus,              incrgaps,       {.i = -2 } },                                      // decrease outer gaps
@@ -162,7 +138,6 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioMicMute,   spawn,          SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	{ 0,                            XF86XK_MonBrightnessUp, spawn,         SHCMD("brightnessctl set +4%") },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn,       SHCMD("brightnessctl set 4%-") },
-		
 	{ MODKEY,                       XK_period,             spawn,          SHCMD("playerctl next") },                         // next track
 	{ MODKEY,                       XK_comma,              spawn,          SHCMD("playerctl previous") },                     // prev track
 	{ MODKEY,                       XK_slash,              spawn,          SHCMD("playerctl play-pause") },                   // play/pause
@@ -183,8 +158,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                                  6)
 	TAGKEYS(                        XK_8,                                  7)
 	TAGKEYS(                        XK_9,                                  8)
-	{ MODKEY|ControlMask,           XK_r,                  spawn,          SHCMD("pkill dwm") },                              // reload dwm
-	{ MODKEY|ShiftMask,             XK_BackSpace,          quit,           {0} },                                             // quit dwm
+	{ MODKEY|ControlMask,           XK_r,                  spawn,          SHCMD("pkill dwm") },                              // force quit dwm
 };
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */

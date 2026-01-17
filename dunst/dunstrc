@@ -40,7 +40,7 @@
     force_xinerama = false
     width = 380
     height = 80
-    origin = top-right
+    origin = top-center
     offset = 20x24
     follow = none
 
