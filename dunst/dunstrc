@@ -35,13 +35,13 @@
     always_run_script = true
     title = Dunst
     class = Dunst
-    corner_radius = 4
+    corner_radius = 0
     ignore_dbusclose = false
     force_xinerama = false
     width = 380
     height = 80
     origin = top-center
-    offset = 20x24
+    offset = 24x24
     follow = none
 
 [urgency_low]

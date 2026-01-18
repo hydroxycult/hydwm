@@ -36,7 +36,7 @@ sudo pacman -S --needed --noconfirm \
     figlet \
     fzf \
     thunar \
-    maim \
+    flameshot \
     xclip \
     xcolor \
     zathura \

@@ -142,7 +142,7 @@ static const Key keys[] = {
 	{ 0,                            XF86XK_AudioPrev,      spawn,          SHCMD("playerctl previous") },
 	{ 0,                            XF86XK_AudioPlay,      spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                            XF86XK_AudioPause,     spawn,          SHCMD("playerctl play-pause") },
-  { MODKEY|ShiftMask,             XK_s,                  spawn,          SHCMD("flameshot gui") }, 
+  { MODKEY|ShiftMask,             XK_s,                  spawn,          SHCMD("flameshot gui -r | xclip -selection clipboard -t image/png") }, 
 	{ MODKEY|ShiftMask,             XK_comma,              tagmon,         {.i = -1 } },                                      // move to prev monitor
 	{ MODKEY|ShiftMask,             XK_period,             tagmon,         {.i = +1 } },                                      // move to next monitor
 	TAGKEYS(                        XK_1,                                  0)
@@ -171,3 +171,4 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+

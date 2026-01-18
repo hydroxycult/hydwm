@@ -1,0 +1,3 @@
+Packages through Paru: graphite-gtk-theme-black-git
+Other packages: bat bluetui bluez-utils btop cava cups cups-pdf epson-inkjet-printer-escpr-bin sioyek xdotool noto-fonts-emoji noto-fonts localsend-bin
+sh -c "cd %f && st"
